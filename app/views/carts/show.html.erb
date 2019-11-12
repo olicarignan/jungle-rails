@@ -3,7 +3,7 @@
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-
+  <% if enhanced_cart.length > 0 %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -31,10 +31,14 @@
       </tfoot>
     </table>
   </div>
+  <%else%>
+  <h3>Your cart is currently empty</h3>
+  <%end%>
 
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
+      <% if enhanced_cart.length > 0 %>
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -45,6 +49,11 @@
           data-email="kvirani@gmail.com"
           data-currency="cad">
         </script>
+        <% else %>
+        <div>
+        <a href="/" style="position:fixed" class="alert alert-danger">Back to homepage</a>
+        </div>
+        <%end%>
       <% end %>
     </div>
   </div>
