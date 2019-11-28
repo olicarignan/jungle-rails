@@ -1,12 +1,17 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
   describe 'Validations' do
-
-    it "is a valid user" do 
-      @user = User.new(first_name: "first name", last_name: "last name", email: "email@email.com", password: "lasddjalksd")
-
-      expect(@user).to be_valid
+    it "is valid" do
+      user = User.new(
+        first_name: 'first_name',
+        last_name: 'last_name',
+        email: 'test2@test.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+      expect(user).to be_valid
     end
 
     it "email is missing" do
@@ -150,4 +155,5 @@ RSpec.describe User, type: :model do
       expect(user).not_to be(nil)
     end
   end
+
 end
